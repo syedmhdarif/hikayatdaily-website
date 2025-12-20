@@ -179,6 +179,87 @@
       color: var(--primary);
     }
 
+    /* Marketing ads */
+    .ads {
+      padding: clamp(32px, 6vw, 48px);
+      border-top: 1px solid rgba(33, 31, 38, 0.08);
+    }
+
+    .ads-header {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+
+    .ads-title {
+      margin: 0;
+      font-family: "Playfair Display", "Times New Roman", serif;
+      font-size: clamp(1.6rem, 2.5vw, 2rem);
+      color: var(--primary);
+      letter-spacing: -0.01em;
+    }
+
+    .ads-subtitle {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1rem;
+      max-width: 62ch;
+    }
+
+    .ads-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+
+    .ad-card {
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid rgba(33, 31, 38, 0.06);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 18px 32px -26px rgba(33, 31, 38, 0.35);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .ad-media {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      background: linear-gradient(135deg, rgba(59, 58, 122, 0.08), rgba(245, 193, 93, 0.08));
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+    }
+
+    .ad-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .ad-body {
+      padding: 14px 16px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .ad-title {
+      margin: 0;
+      font-weight: 700;
+      color: var(--primary);
+      font-size: 1rem;
+    }
+
+    .ad-text {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
     footer {
       padding: 24px clamp(24px, 5vw, 64px);
       border-top: 1px solid rgba(33, 31, 38, 0.08);
@@ -201,15 +282,17 @@
 
       .waitlist-form {
         flex-direction: column;
-        gap: 12px;
+        gap: 8px;
+        margin-top: 24px;
       }
 
       .waitlist-field {
         width: 100%;
+        gap: 6px;
       }
 
       .waitlist-notes {
-        min-height: 110px;
+        min-height: 96px;
       }
 
       footer {
@@ -243,6 +326,59 @@
         <a href="/terms-of-service.html">Terms of Service</a>
         <a href="/delete-account.html">Delete Account</a>
       </nav>
+    </section>
+    <section class="ads">
+      <div class="ads-header">
+        <h2 class="ads-title">Preview the Hikayat Daily experience</h2>
+        <p class="ads-subtitle">Adaptable creatives built for both mobile and desktop. These assets showcase the core flows: discovery, notes, personalization, and daily ritual.</p>
+      </div>
+      <div class="ads-grid">
+        <article class="ad-card">
+          <div class="ad-media">
+            <img src="assets/BannerIntro.png" alt="Intro banner for Hikayat Daily" loading="lazy" />
+          </div>
+          <div class="ad-body">
+            <h3 class="ad-title">Banner Intro</h3>
+            <p class="ad-text">Use this hero-ready visual for landing pages and above-the-fold placements.</p>
+          </div>
+        </article>
+        <article class="ad-card">
+          <div class="ad-media">
+            <img src="assets/Intro.png" alt="App onboarding screen" loading="lazy" />
+          </div>
+          <div class="ad-body">
+            <h3 class="ad-title">Onboarding</h3>
+            <p class="ad-text">Guide new readers with a clean, inviting onboarding story.</p>
+          </div>
+        </article>
+        <article class="ad-card">
+          <div class="ad-media">
+            <img src="assets/Personalized.png" alt="Personalized feed example" loading="lazy" />
+          </div>
+          <div class="ad-body">
+            <h3 class="ad-title">Personalized Feed</h3>
+            <p class="ad-text">Highlight tailored reflections and recommendations across devices.</p>
+          </div>
+        </article>
+        <article class="ad-card">
+          <div class="ad-media">
+            <img src="assets/Notes.png" alt="Notes feature preview" loading="lazy" />
+          </div>
+          <div class="ad-body">
+            <h3 class="ad-title">Notes & Journaling</h3>
+            <p class="ad-text">Showcase mindful journaling and bookmarking for returning users.</p>
+          </div>
+        </article>
+        <article class="ad-card">
+          <div class="ad-media">
+            <img src="assets/Activity.png" alt="Reading activity view" loading="lazy" />
+          </div>
+          <div class="ad-body">
+            <h3 class="ad-title">Daily Activity</h3>
+            <p class="ad-text">Capture streaks and progress to drive engagement in retargeting creatives.</p>
+          </div>
+        </article>
+      </div>
     </section>
     <footer>
       <span>© <span id="year"></span> Hikayat Daily. All rights reserved.</span>
