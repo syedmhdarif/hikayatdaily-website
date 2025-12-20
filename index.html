@@ -75,11 +75,59 @@
       color: var(--muted);
     }
 
+    .waitlist-form {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-top: 32px;
+      align-items: flex-start;
+    }
+
+    .waitlist-field {
+      flex: 1 1 220px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .waitlist-field label {
+      font-weight: 600;
+      color: var(--primary);
+      font-size: 0.95rem;
+      letter-spacing: 0.01em;
+    }
+
+    .waitlist-input,
+    .waitlist-notes {
+      width: 100%;
+      border: 1px solid rgba(59, 58, 122, 0.18);
+      border-radius: 14px;
+      padding: 14px 16px;
+      font-family: "DM Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 1rem;
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.92);
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .waitlist-input:focus,
+    .waitlist-notes:focus {
+      outline: none;
+      border-color: rgba(59, 58, 122, 0.45);
+      box-shadow: 0 0 0 3px rgba(59, 58, 122, 0.12);
+    }
+
+    .waitlist-notes {
+      min-height: 140px;
+      resize: vertical;
+    }
+
     .cta {
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       gap: 12px;
-      padding: 16px 24px;
+      padding: 16px 28px;
       border-radius: 999px;
       background: var(--primary);
       color: var(--surface);
@@ -89,6 +137,8 @@
       letter-spacing: 0.01em;
       box-shadow: 0 20px 40px -24px rgba(59, 58, 122, 0.85);
       transition: transform 0.2s ease, box-shadow 0.2s ease;
+      border: none;
+      cursor: pointer;
     }
 
     .cta:hover {
@@ -149,6 +199,10 @@
         margin-top: 32px;
       }
 
+      .waitlist-form {
+        flex-direction: column;
+      }
+
       footer {
         text-align: center;
       }
@@ -164,7 +218,17 @@
         Hikayat Daily curates bilingual reflections rooted in Nusantara heritage—guiding you through moments of calm, insight, and gratitude.
         The app is in development. Join our waitlist to be the first to experience it.
       </p>
-      <a class="cta" href="mailto:hello@hikayatdaily.com?subject=Join%20the%20Hikayat%20Daily%20waitlist">Request early access →</a>
+      <form class="waitlist-form" id="waitlist-form">
+        <div class="waitlist-field">
+          <label for="waitlist-email">Email</label>
+          <input type="email" id="waitlist-email" class="waitlist-input" name="email" placeholder="you@example.com" required />
+        </div>
+        <div class="waitlist-field" style="flex: 1 1 100%;">
+          <label for="waitlist-notes">Notes (optional)</label>
+          <textarea id="waitlist-notes" class="waitlist-notes" name="notes" placeholder="Tell us why you're excited or what you'd like to see in Hikayat Daily."></textarea>
+        </div>
+        <button type="button" class="cta" id="waitlist-submit">Request early access →</button>
+      </form>
       <nav>
         <a href="/privacy-policy.html">Privacy Policy</a>
         <a href="/terms-of-service.html">Terms of Service</a>
@@ -178,6 +242,34 @@
   </main>
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    const submitButton = document.getElementById("waitlist-submit");
+    const emailInput = document.getElementById("waitlist-email");
+    const notesInput = document.getElementById("waitlist-notes");
+
+    submitButton.addEventListener("click", () => {
+      const email = emailInput.value.trim();
+      const notes = notesInput.value.trim();
+
+      if (!email) {
+        emailInput.focus();
+        emailInput.reportValidity();
+        return;
+      }
+
+      const subject = encodeURIComponent("Join the Hikayat Daily waitlist");
+      const bodyLines = [
+        `Email: ${email}`,
+        "",
+        "Notes:",
+        notes || "(No additional notes provided.)"
+      ];
+
+      const body = encodeURIComponent(bodyLines.join("\n"));
+      const mailtoLink = `mailto:hikayatdaily.app@gmail.com?subject=${subject}&body=${body}`;
+
+      window.location.href = mailtoLink;
+    });
   </script>
 </body>
 </html>
