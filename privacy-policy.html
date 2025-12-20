@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy · Hikayat Daily</title>
+  <style>
+    body {
+      margin: 0;
+      padding: clamp(32px, 8vw, 80px);
+      font-family: "DM Sans", system-ui, sans-serif;
+      background: #f5f0ec;
+      color: #211f26;
+      line-height: 1.6;
+    }
+
+    main {
+      max-width: 880px;
+      margin: auto;
+      padding: clamp(32px, 6vw, 64px);
+      background: #ffffff;
+      border-radius: 24px;
+      box-shadow: 0 24px 48px -40px rgba(33, 31, 38, 0.6);
+    }
+
+    h1 {
+      margin-top: 0;
+      font-size: clamp(2.2rem, 3vw, 2.8rem);
+      color: #3b3a7a;
+    }
+
+    h2 {
+      margin-top: 2.25rem;
+      font-size: 1.5rem;
+      color: #3b3a7a;
+    }
+
+    a {
+      color: #3b3a7a;
+    }
+
+    nav {
+      margin-top: 2.5rem;
+      font-size: 0.95rem;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Privacy Policy</h1>
+    <p><strong>Effective date:</strong> <span id="effective-date">January 1, 2026</span></p>
+    <p>
+      This privacy policy explains how Hikayat Daily collects, uses, and safeguards your personal information when you use our mobile application, website, or related services (collectively, the "Services").
+    </p>
+
+    <h2>Information We Collect</h2>
+    <p>
+      We may collect information you provide directly to us, such as your name, email address, and preferences when you sign up for updates or create an account. We also collect usage data to understand how the Services are used and to improve your experience.
+    </p>
+
+    <h2>How We Use Information</h2>
+    <p>
+      Hikayat Daily uses collected information to operate, maintain, and enhance the Services, communicate with you, and personalize your experience. We may also use information for security purposes, to comply with legal obligations, and to develop new features.
+    </p>
+
+    <h2>Sharing of Information</h2>
+    <p>
+      We do not sell your personal data. We may share information with trusted service providers who assist us in operating the Services, subject to confidentiality obligations. We may also disclose information if required by law or to protect the rights, property, or safety of Hikayat Daily and its users.
+    </p>
+
+    <h2>Your Choices</h2>
+    <p>
+      You may request access to or deletion of your personal information by contacting us at <a href="mailto:hello@hikayatdaily.com">hello@hikayatdaily.com</a>. You can unsubscribe from marketing communications at any time by using the link provided in the emails.
+    </p>
+
+    <h2>Contact Us</h2>
+    <p>
+      If you have any questions or concerns about this policy, please reach out to <a href="mailto:hello@hikayatdaily.com">hello@hikayatdaily.com</a>.
+    </p>
+
+    <nav>
+      <a href="/">← Back to Hikayat Daily</a>
+    </nav>
+  </main>
+  <script>
+    const policyDate = new Date("2026-01-01");
+    document.getElementById("effective-date").textContent = policyDate.toLocaleDateString(undefined, {
+      year: "numeric",
+      month: "long",
+      day: "numeric"
+    });
+  </script>
+</body>
+</html>

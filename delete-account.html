@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description"
+        content="Hikayat Daily – a mindful reading companion that helps you pause, reflect, and grow." />
+    <title>Hikayat Daily</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@600;700&display=swap"
+        rel="stylesheet" />
+    <style>
+        :root {
+            color-scheme: light;
+            --bg: #f5f0ec;
+            --surface: #ffffff;
+            --primary: #3b3a7a;
+            --accent: #f5c15d;
+            --text: #211f26;
+            --muted: #6f6b78;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: "DM Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            color: var(--text);
+            background: var(--bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 32px clamp(24px, 5vw, 64px);
+        }
+
+        main {
+            max-width: 960px;
+            width: 100%;
+            background: var(--surface);
+            border-radius: 28px;
+            box-shadow: 0 32px 60px -48px rgba(33, 31, 38, 0.6);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .hero {
+            padding: clamp(48px, 8vw, 96px);
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at top right, rgba(59, 58, 122, 0.12), transparent 55%);
+            z-index: -1;
+        }
+
+        h1 {
+            margin: 0;
+            font-family: "Playfair Display", "Times New Roman", serif;
+            font-size: clamp(2.75rem, 4vw, 3.5rem);
+            line-height: 1.1;
+            color: var(--primary);
+            letter-spacing: -0.02em;
+        }
+
+        p.lead {
+            margin: 24px 0 32px;
+            font-size: clamp(1.1rem, 2vw, 1.35rem);
+            max-width: 48ch;
+            color: var(--muted);
+        }
+
+        .cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 24px;
+            border-radius: 999px;
+            background: var(--primary);
+            color: var(--surface);
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: 0.01em;
+            box-shadow: 0 20px 40px -24px rgba(59, 58, 122, 0.85);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 28px 50px -26px rgba(59, 58, 122, 0.9);
+        }
+
+        nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-top: 48px;
+        }
+
+        nav a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 2px solid transparent;
+            padding-bottom: 4px;
+            transition: border-color 0.2s ease;
+        }
+
+        nav a:hover {
+            border-color: rgba(59, 58, 122, 0.35);
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 24px;
+            padding: 10px 16px;
+            background: rgba(245, 193, 93, 0.18);
+            border-radius: 999px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        footer {
+            padding: 24px clamp(24px, 5vw, 64px);
+            border-top: 1px solid rgba(33, 31, 38, 0.08);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 720px) {
+            body {
+                padding: 16px;
+            }
+
+            nav {
+                flex-direction: column;
+                margin-top: 32px;
+            }
+
+            footer {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <section class="hero">
+            <span class="badge">Hikayat Daily · Coming Soon</span>
+            <h1>A mindful reading ritual for every day.</h1>
+            <p class="lead">
+                Hikayat Daily curates bilingual reflections rooted in Nusantara heritage—guiding you through moments of
+                calm, insight, and gratitude.
+                The app is in development. Join our waitlist to be the first to experience it.
+            </p>
+            <a class="cta" href="mailto:hello@hikayatdaily.com?subject=Join%20the%20Hikayat%20Daily%20waitlist">Request
+                early access →</a>
+            <nav>
+                <a href="/privacy-policy.html">Privacy Policy</a>
+                <a href="/terms-of-service.html">Terms of Service</a>
+                <a href="/delete-account.html">Delete Account</a>
+            </nav>
+        </section>
+        <footer>
+            <span>© <span id="year"></span> Hikayat Daily. All rights reserved.</span>
+            <span>Made with intention in Southeast Asia.</span>
+        </footer>
+    </main>
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+</body>
+
+</html>
