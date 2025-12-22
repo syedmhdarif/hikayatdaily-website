@@ -138,14 +138,64 @@
       font-weight: 600;
       letter-spacing: 0.01em;
       box-shadow: 0 20px 40px -24px rgba(59, 58, 122, 0.85);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
       border: none;
       cursor: pointer;
     }
 
-    .cta:hover {
+    .cta:hover:not(:disabled) {
       transform: translateY(-2px);
       box-shadow: 0 28px 50px -26px rgba(59, 58, 122, 0.9);
+    }
+
+    .cta:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .form-message {
+      padding: 14px 18px;
+      border-radius: 12px;
+      font-size: 0.95rem;
+      font-weight: 500;
+      margin-top: 12px;
+      animation: slideIn 0.3s ease;
+    }
+
+    .form-message.success {
+      background: rgba(34, 197, 94, 0.12);
+      color: #15803d;
+      border: 1px solid rgba(34, 197, 94, 0.2);
+    }
+
+    .form-message.error {
+      background: rgba(239, 68, 68, 0.12);
+      color: #b91c1c;
+      border: 1px solid rgba(239, 68, 68, 0.2);
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(-8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .spinner {
+      width: 16px;
+      height: 16px;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-top-color: white;
+      border-radius: 50%;
+      animation: spin 0.6s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
     }
 
     nav {
@@ -321,7 +371,11 @@
           <label for="waitlist-notes">Notes (optional)</label>
           <textarea id="waitlist-notes" class="waitlist-notes" name="notes" placeholder="Tell us why you're excited or what you'd like to see in Hikayat Daily."></textarea>
         </div>
-        <button type="button" class="cta" id="waitlist-submit">Request early access →</button>
+        <button type="submit" class="cta" id="waitlist-submit">
+          <span id="submit-text">Request early access →</span>
+          <span id="submit-spinner" class="spinner" style="display: none;"></span>
+        </button>
+        <div id="form-message" style="flex: 1 1 100%; display: none;"></div>
       </form>
       <nav>
         <a href="/privacy-policy.html">Privacy Policy</a>
@@ -390,11 +444,35 @@
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
 
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbznJQ4VZeyu6CMtwafX_3jAbLXGeuw20-TRwBbAhG2ylBZudd3YUHT4y2Jc1wBnqQ0MHg/exec";
+    
+    const form = document.getElementById("waitlist-form");
     const submitButton = document.getElementById("waitlist-submit");
+    const submitText = document.getElementById("submit-text");
+    const submitSpinner = document.getElementById("submit-spinner");
     const emailInput = document.getElementById("waitlist-email");
     const notesInput = document.getElementById("waitlist-notes");
+    const formMessage = document.getElementById("form-message");
 
-    submitButton.addEventListener("click", () => {
+    function showMessage(message, type) {
+      formMessage.textContent = message;
+      formMessage.className = `form-message ${type}`;
+      formMessage.style.display = "block";
+      
+      setTimeout(() => {
+        formMessage.style.display = "none";
+      }, 5000);
+    }
+
+    function setLoading(isLoading) {
+      submitButton.disabled = isLoading;
+      submitText.style.display = isLoading ? "none" : "inline";
+      submitSpinner.style.display = isLoading ? "inline-block" : "none";
+    }
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      
       const email = emailInput.value.trim();
       const notes = notesInput.value.trim();
 
@@ -404,18 +482,31 @@
         return;
       }
 
-      const subject = encodeURIComponent("Join the Hikayat Daily waitlist");
-      const bodyLines = [
-        `Email: ${email}`,
-        "",
-        "Notes:",
-        notes || "(No additional notes provided.)"
-      ];
+      setLoading(true);
+      formMessage.style.display = "none";
 
-      const body = encodeURIComponent(bodyLines.join("\n"));
-      const mailtoLink = `mailto:hikayatdaily.app@gmail.com?subject=${subject}&body=${body}`;
+      try {
+        const response = await fetch(SCRIPT_URL, {
+          method: "POST",
+          mode: "no-cors",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email, notes })
+        });
 
-      window.location.href = mailtoLink;
+        // Note: no-cors mode doesn't allow reading response, but submission still works
+        // We assume success if no error is thrown
+        showMessage("Thank you for joining the waitlist! We'll be in touch soon.", "success");
+        emailInput.value = "";
+        notesInput.value = "";
+        
+      } catch (error) {
+        console.error("Submission error:", error);
+        showMessage("Something went wrong. Please try again or email us directly at hikayatdaily.app@gmail.com", "error");
+      } finally {
+        setLoading(false);
+      }
     });
   </script>
 </body>
