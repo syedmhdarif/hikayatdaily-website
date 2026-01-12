@@ -1,10 +1,12 @@
-[{
-  "relation": ["delegate_permission/common.handle_all_urls"],
-  "target": {
-    "namespace": "android_app",
-    "package_name": "com.hikayatdailyglobal",
-    "sha256_cert_fingerprints": [
-      "85:05:b2:5e:95:f7:6c:32:65:e0:f8:ce:79:07:ac:3d:ef:ee:fd:b5:e9:b9:24:84:01:86:fa:87:7a:3e:cd:63"
-    ]
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.hikayatdailyglobal",
+      "sha256_cert_fingerprints":
+        ["DE:E6:D4:41:89:DD:15:FB:39:BC:8A:D3:DF:6D:EB:40:B1:10:6E:A3:A3:F7:BD:C1:85:F3:23:25:2C:EB:22:EE"]
+    }
   }
-}]
+]
+
