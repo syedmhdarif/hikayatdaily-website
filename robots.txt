@@ -1,0 +1,11 @@
+# Robots.txt for Hikayat Daily
+# https://hikayatdaily.com
+
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://hikayatdaily.com/sitemap.xml
+
+# Crawl-delay (optional, be nice to crawlers)
+Crawl-delay: 1

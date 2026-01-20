@@ -540,7 +540,7 @@ body {
 
 .screenshots-scroll {
   display: flex;
-  gap: 24px;
+  gap: 20px;
   padding: 20px 0;
   overflow-x: auto;
   scrollbar-width: none;
