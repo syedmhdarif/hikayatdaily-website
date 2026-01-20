@@ -5,91 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Delete your HikayatDaily account and all associated data." />
   <title>Delete Account · Hikayat Daily</title>
+  <link rel="icon" type="image/png" href="/assets/HikayatDaily.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
   <style>
-    :root {
-      color-scheme: light;
-      --bg: #f5f0ec;
-      --surface: #ffffff;
-      --primary: #3b3a7a;
-      --accent: #f5c15d;
-      --danger: #d32f2f;
-      --text: #211f26;
-      --muted: #6f6b78;
+    .delete-content {
+      max-width: 800px;
     }
 
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      min-height: 100vh;
-      font-family: "DM Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      color: var(--text);
-      background: var(--bg);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 32px clamp(24px, 5vw, 64px);
-    }
-
-    main {
-      max-width: 880px;
-      width: 100%;
-      background: var(--surface);
-      border-radius: 28px;
-      box-shadow: 0 32px 60px -48px rgba(33, 31, 38, 0.6);
-      overflow: hidden;
-    }
-
-    .content {
-      padding: clamp(48px, 8vw, 64px);
-      position: relative;
-    }
-
-    .content::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at top right, rgba(59, 58, 122, 0.08), transparent 55%);
-      z-index: -1;
-      pointer-events: none;
-    }
-
-    h1 {
-      margin: 0 0 16px 0;
-      font-family: "Playfair Display", "Times New Roman", serif;
-      font-size: clamp(2.2rem, 4vw, 2.8rem);
-      line-height: 1.1;
-      color: var(--primary);
-      letter-spacing: -0.02em;
-    }
-
-    .subtitle {
+    .delete-content .subtitle {
       margin: 0 0 32px 0;
       font-size: 1.1rem;
-      color: var(--muted);
+      color: var(--text-muted);
       line-height: 1.5;
     }
 
-    h2 {
-      margin: 32px 0 16px 0;
-      font-size: 1.4rem;
-      color: var(--primary);
-      font-weight: 600;
-    }
-
-    p {
-      margin: 0 0 16px 0;
-      line-height: 1.6;
-      color: var(--text);
-    }
-
     .info-box {
-      background: rgba(59, 58, 122, 0.06);
+      background: rgba(13, 148, 136, 0.08);
       border-left: 4px solid var(--primary);
       padding: 20px 24px;
       margin: 24px 0;
@@ -99,11 +33,12 @@
     .info-box p {
       margin: 0;
       font-size: 0.95rem;
+      color: var(--text);
     }
 
     .warning-box {
-      background: rgba(211, 47, 47, 0.06);
-      border-left: 4px solid var(--danger);
+      background: rgba(220, 38, 38, 0.08);
+      border-left: 4px solid #DC2626;
       padding: 20px 24px;
       margin: 24px 0;
       border-radius: 8px;
@@ -111,18 +46,8 @@
 
     .warning-box p {
       margin: 0;
-      color: var(--danger);
+      color: #DC2626;
       font-weight: 500;
-    }
-
-    ul {
-      margin: 16px 0;
-      padding-left: 24px;
-      line-height: 1.8;
-    }
-
-    li {
-      margin: 8px 0;
     }
 
     .steps {
@@ -137,6 +62,7 @@
       position: relative;
       padding-left: 48px;
       margin: 20px 0;
+      color: var(--text-muted);
     }
 
     .steps li::before {
@@ -147,7 +73,7 @@
       width: 32px;
       height: 32px;
       background: var(--primary);
-      color: var(--surface);
+      color: white;
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -156,73 +82,47 @@
       font-size: 0.9rem;
     }
 
-    .cta {
+    .cta-btn {
       display: inline-flex;
       align-items: center;
       gap: 12px;
-      padding: 16px 32px;
-      border-radius: 999px;
+      padding: 14px 28px;
+      border-radius: 12px;
       background: var(--primary);
-      color: var(--surface);
+      color: white;
       text-decoration: none;
       font-size: 1rem;
       font-weight: 600;
-      letter-spacing: 0.01em;
-      box-shadow: 0 20px 40px -24px rgba(59, 58, 122, 0.85);
       transition: transform 0.2s ease, box-shadow 0.2s ease;
-      margin: 24px 0;
+      margin: 8px 0;
     }
 
-    .cta:hover {
+    .cta-btn:hover {
       transform: translateY(-2px);
-      box-shadow: 0 28px 50px -26px rgba(59, 58, 122, 0.9);
+      box-shadow: 0 8px 24px rgba(13, 148, 136, 0.3);
     }
 
-    .cta.danger {
-      background: var(--danger);
-      box-shadow: 0 20px 40px -24px rgba(211, 47, 47, 0.85);
+    .cta-btn.danger {
+      background: #DC2626;
     }
 
-    .cta.danger:hover {
-      box-shadow: 0 28px 50px -26px rgba(211, 47, 47, 0.9);
+    .cta-btn.danger:hover {
+      box-shadow: 0 8px 24px rgba(220, 38, 38, 0.3);
     }
 
     .button-group {
       display: flex;
       flex-wrap: wrap;
       gap: 16px;
-      margin: 32px 0;
-    }
-
-    nav {
-      margin-top: 48px;
-      padding-top: 32px;
-      border-top: 1px solid rgba(33, 31, 38, 0.08);
-    }
-
-    nav a {
-      color: var(--primary);
-      text-decoration: none;
-      font-weight: 500;
-      border-bottom: 2px solid transparent;
-      padding-bottom: 4px;
-      transition: border-color 0.2s ease;
-    }
-
-    nav a:hover {
-      border-color: rgba(59, 58, 122, 0.35);
+      margin: 24px 0;
     }
 
     @media (max-width: 720px) {
-      body {
-        padding: 16px;
-      }
-
       .button-group {
         flex-direction: column;
       }
 
-      .cta {
+      .cta-btn {
         width: 100%;
         justify-content: center;
       }
@@ -230,8 +130,34 @@
   </style>
 </head>
 <body>
-  <main>
-    <section class="content">
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar">
+    <div class="container nav-content">
+      <a href="/" class="nav-brand">
+        <img src="/assets/HikayatDaily.png" alt="Hikayat Daily" class="nav-logo" />
+        <span class="nav-brand-text">Hikayat Daily</span>
+      </a>
+      <div class="nav-links">
+        <a href="/#features">Features</a>
+        <a href="/#ai">AI Intelligence</a>
+        <a href="/#download" class="nav-cta">Download App</a>
+      </div>
+      <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="/#features" onclick="toggleMobileMenu()">Features</a>
+    <a href="/#ai" onclick="toggleMobileMenu()">AI Intelligence</a>
+    <a href="/#download" onclick="toggleMobileMenu()">Download App</a>
+  </div>
+
+  <section class="policy-page">
+    <div class="container">
+      <div class="policy-content delete-content">
       <h1>Delete Your Account</h1>
       <p class="subtitle">
         We're sorry to see you go. This page will help you permanently delete your HikayatDaily account and all associated data.
@@ -267,7 +193,7 @@
       </ol>
 
       <div class="button-group">
-        <a class="cta danger" href="hikayatdaily://settings" id="deeplink-button">
+        <a class="cta-btn danger" href="hikayatdaily://settings" id="deeplink-button">
           Open App to Delete Account →
         </a>
       </div>
@@ -281,27 +207,44 @@
       </p>
       
       <div class="button-group">
-        <a class="cta" href="mailto:hikayatdaily.app@gmail.com?subject=Account%20Deletion%20Request&body=Please%20delete%20my%20HikayatDaily%20account.%0A%0AEmail%20associated%20with%20account%3A%20%5BYour%20Email%5D">
+        <a class="cta-btn" href="mailto:hikayatdaily.app@gmail.com?subject=Account%20Deletion%20Request&body=Please%20delete%20my%20HikayatDaily%20account.%0A%0AEmail%20associated%20with%20account%3A%20%5BYour%20Email%5D">
           Email Support →
         </a>
       </div>
 
-      <p style="font-size: 0.95rem; color: var(--muted);">
+      <p style="font-size: 0.95rem; color: var(--text-muted);">
         Please include the email address associated with your account in your message. We'll process your request within 7 business days.
       </p>
 
       <h2>Need Help?</h2>
       <p>
-        If you have questions about account deletion or data privacy, please review our <a href="/privacy-policy.html" style="color: var(--primary); text-decoration: underline;">Privacy Policy</a> or contact us at <a href="mailto:hikayatdaily.app@gmail.com" style="color: var(--primary); text-decoration: underline;">hikayatdaily.app@gmail.com</a>.
+        If you have questions about account deletion or data privacy, please review our <a href="/privacy-policy.html">Privacy Policy</a> or contact us at <a href="mailto:hikayatdaily.app@gmail.com">hikayatdaily.app@gmail.com</a>.
       </p>
 
-      <nav>
-        <a href="/">← Back to Hikayat Daily</a>
-      </nav>
-    </section>
-  </main>
+        <nav class="policy-nav">
+          <a href="/">← Back to Hikayat Daily</a>
+        </nav>
+      </div>
+    </div>
+  </section>
 
   <script>
+    // Mobile menu toggle
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobile-menu');
+      menu.classList.toggle('active');
+    }
+
+    // Navbar scroll effect
+    window.addEventListener('scroll', () => {
+      const navbar = document.getElementById('navbar');
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+
     // Deep link handling with fallback
     document.getElementById('deeplink-button').addEventListener('click', function(e) {
       const deepLink = 'hikayatdaily://settings/delete-account';
