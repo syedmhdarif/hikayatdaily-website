@@ -31,6 +31,17 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      
+      - name: Inject environment variables
+        run: |
+          cat > env.js << EOF
+          // Auto-generated environment variables - DO NOT EDIT
+          window.ENV = {
+            SUPABASE_URL: '${{ secrets.SUPABASE_URL }}',
+            SUPABASE_ANON_KEY: '${{ secrets.SUPABASE_ANON_KEY }}'
+          };
+          EOF
+      
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
