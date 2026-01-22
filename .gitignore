@@ -1,0 +1,20 @@
+# Environment variables
+.env
+.env.local
+.env.production
+env.js
+
+# Documentation
+documents/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor directories
+.vscode/
+.idea/
+
+# Logs
+*.log
+npm-debug.log*
