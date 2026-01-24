@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Opening Hikayat Daily...</title>
+
+    <!-- Social Media Preview -->
+    <meta property="og:title" content="Hikayat Daily">
+    <meta property="og:description" content="Your AI-powered daily news companion">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            max-width: 380px;
+            width: 100%;
+        }
+
+        .logo {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+
+        h2 {
+            color: #333;
+            margin-bottom: 8px;
+            font-size: 22px;
+        }
+
+        p {
+            color: #666;
+            font-size: 15px;
+            margin-bottom: 24px;
+        }
+
+        .loader {
+            width: 44px;
+            height: 44px;
+            border: 4px solid #f0f0f0;
+            border-top-color: #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 24px;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 16px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+
+        #fallback {
+            display: none;
+        }
+
+        .store-badges {
+            margin-top: 16px;
+        }
+
+        .store-badges img {
+            height: 40px;
+            margin: 0 4px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="logo">📰</div>
+        <h2>Opening Hikayat Daily...</h2>
+        <p>Please wait while we redirect you to the app</p>
+        <div class="loader"></div>
+
+        <div id="fallback">
+            <p style="margin-bottom: 16px;">Don't have the app yet?</p>
+            <a class="btn" id="storeLink" href="#">Download Now</a>
+        </div>
+    </div>
+
+    <script>
+        (function () {
+            // Parse URL parameters
+            const params = new URLSearchParams(window.location.search);
+            const type = params.get('type') || 'home';
+
+            // Build deep link path based on content type
+            let deepLinkPath = '';
+
+            switch (type) {
+                case 'article':
+                    // Article: pass all params
+                    const articleParams = new URLSearchParams();
+                    if (params.get('url')) articleParams.set('url', params.get('url'));
+                    if (params.get('title')) articleParams.set('title', params.get('title'));
+                    if (params.get('source')) articleParams.set('source', params.get('source'));
+                    if (params.get('imageUrl')) articleParams.set('imageUrl', params.get('imageUrl'));
+                    if (params.get('description')) articleParams.set('description', params.get('description'));
+                    deepLinkPath = 'article?' + articleParams.toString();
+                    break;
+
+                case 'ai-summary':
+                    // AI Summary: pass summary type
+                    const summaryType = params.get('summaryType') || 'standard';
+                    deepLinkPath = 'ai-summary?summaryType=' + summaryType;
+                    break;
+
+                default:
+                    // Default: open home
+                    deepLinkPath = '';
+            }
+
+            // Construct the deep link
+            const deepLink = 'hikayatdaily://' + deepLinkPath;
+
+            // Store URLs
+            const playStore = 'https://play.google.com/store/apps/details?id=com.hikayatdailyglobal';
+            const appStore = 'https://apps.apple.com/app/id123456789'; // TODO: Replace with your App Store ID
+
+            // Detect platform
+            const ua = navigator.userAgent.toLowerCase();
+            const isIOS = /iphone|ipad|ipod/.test(ua);
+            const isAndroid = /android/.test(ua);
+            const storeUrl = isIOS ? appStore : playStore;
+
+            // Set store link
+            document.getElementById('storeLink').href = storeUrl;
+
+            // Try to open the app
+            window.location.href = deepLink;
+
+            // Show fallback after 2 seconds
+            setTimeout(function () {
+                document.getElementById('fallback').style.display = 'block';
+            }, 2000);
+
+            // Auto-redirect to store after 3 seconds (mobile only)
+            if (isIOS || isAndroid) {
+                setTimeout(function () {
+                    window.location.href = storeUrl;
+                }, 3000);
+            }
+        })();
+    </script>
+</body>
+
+</html>
