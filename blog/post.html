@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>AI Daily Summary - Hikayat Daily</title>
+  <meta name="description" content="AI-generated daily news summary from Hikayat Daily" />
+  <meta name="robots" content="index, follow" />
+
+  <link rel="canonical" href="https://hikayatdaily.com/blog/post.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Hikayat Daily" />
+  <meta property="og:image" content="https://hikayatdaily.com/assets/HikayatDaily.png" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://hikayatdaily.com/assets/HikayatDaily.png" />
+
+  <link rel="icon" type="image/png" href="/assets/HikayatDaily.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+  <style>
+    .blog-post {
+      padding: 120px 0 60px;
+      background: var(--bg-alt);
+      min-height: 100vh;
+    }
+    .blog-content {
+      background: white;
+      border-radius: 24px;
+      padding: clamp(24px, 5vw, 48px);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .blog-header {
+      margin-bottom: 32px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--border);
+    }
+    .blog-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .blog-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      background: var(--accent);
+      color: var(--primary);
+      border-radius: 100px;
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+    .blog-title {
+      font-size: clamp(1.5rem, 4vw, 2.25rem);
+      font-weight: 800;
+      color: var(--text);
+      line-height: 1.3;
+      margin-bottom: 12px;
+    }
+    .blog-subtitle {
+      font-size: 1rem;
+      color: var(--text-muted);
+    }
+    .blog-section {
+      margin-bottom: 32px;
+    }
+    .blog-section h2 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .blog-section h2 svg {
+      width: 20px;
+      height: 20px;
+    }
+    .blog-section p {
+      color: var(--text-muted);
+      line-height: 1.8;
+      margin-bottom: 12px;
+    }
+    .key-events {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .event-card {
+      background: var(--bg-alt);
+      border-radius: 12px;
+      padding: 20px;
+      border-left: 4px solid var(--primary);
+    }
+    .event-card.high {
+      border-left-color: #EF4444;
+    }
+    .event-card.medium {
+      border-left-color: #F59E0B;
+    }
+    .event-card.low {
+      border-left-color: #10B981;
+    }
+    .event-title {
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+    .event-category {
+      display: inline-block;
+      padding: 2px 8px;
+      background: var(--primary);
+      color: white;
+      border-radius: 4px;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .event-desc {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+    .blog-nav {
+      margin-top: 40px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .blog-nav a {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--primary);
+      font-weight: 500;
+      text-decoration: none;
+    }
+    .blog-nav a:hover {
+      text-decoration: underline;
+    }
+    .loading {
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--text-muted);
+    }
+    .error {
+      text-align: center;
+      padding: 60px 20px;
+      color: #EF4444;
+    }
+    .cta-box {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      border-radius: 16px;
+      padding: 32px;
+      text-align: center;
+      color: white;
+      margin-top: 32px;
+    }
+    .cta-box h3 {
+      font-size: 1.25rem;
+      margin-bottom: 12px;
+    }
+    .cta-box p {
+      opacity: 0.9;
+      margin-bottom: 20px;
+      color: white;
+    }
+    .cta-box .store-btn {
+      background: white;
+      color: var(--text);
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar">
+    <div class="container nav-content">
+      <a href="/" class="nav-brand">
+        <img src="/assets/HikayatDaily.png" alt="Hikayat Daily" class="nav-logo" />
+        <span class="nav-brand-text">Hikayat Daily</span>
+      </a>
+      <div class="nav-links">
+        <a href="/#features">Features</a>
+        <a href="/#ai">AI Intelligence</a>
+        <a href="/#blog">Blog</a>
+        <a href="/#download" class="nav-cta">Download App</a>
+      </div>
+      <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="/#features" onclick="toggleMobileMenu()">Features</a>
+    <a href="/#ai" onclick="toggleMobileMenu()">AI Intelligence</a>
+    <a href="/#blog" onclick="toggleMobileMenu()">Blog</a>
+    <a href="/#download" onclick="toggleMobileMenu()">Download App</a>
+  </div>
+
+  <!-- Blog Post Content -->
+  <section class="blog-post">
+    <div class="container">
+      <div class="blog-content" id="blog-content">
+        <div class="loading">Loading...</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-bottom" style="border-top: none; padding-top: 0;">
+        <span>&copy; <span id="year"></span> Hikayat Daily. All rights reserved. Made with ❤️ in Malaysia.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Navbar scroll effect
+    window.addEventListener('scroll', () => {
+      const navbar = document.getElementById('navbar');
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+
+    // Mobile menu toggle
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobile-menu');
+      menu.classList.toggle('active');
+    }
+
+    // Get post ID from URL hash (e.g., #id=xxx&file=yyy)
+    function getHashParams() {
+      const hash = window.location.hash.substring(1); // Remove the #
+      const params = new URLSearchParams(hash);
+      return {
+        id: params.get('id'),
+        file: params.get('file')
+      };
+    }
+
+    let { id: postId, file: postFile } = getHashParams();
+
+    // Debug: log what we received
+    console.log('URL:', window.location.href);
+    console.log('Hash:', window.location.hash);
+    console.log('postId:', postId, 'postFile:', postFile);
+
+    async function loadPost() {
+      const container = document.getElementById('blog-content');
+
+      // If no params in URL, try to load the latest post from index
+      if (!postId && !postFile) {
+        try {
+          const indexResponse = await fetch('/blog/index.json');
+          const index = await indexResponse.json();
+          if (index.posts && index.posts.length > 0) {
+            postFile = index.posts[0].file;
+            postId = index.posts[0].id;
+            console.log('Loading latest post:', postFile);
+          } else {
+            container.innerHTML = '<div class="error">No posts available. <a href="/">Return to homepage</a></div>';
+            return;
+          }
+        } catch (e) {
+          container.innerHTML = '<div class="error">No post specified. <a href="/">Return to homepage</a></div>';
+          return;
+        }
+      }
+
+      try {
+        // Load from file directly if provided, otherwise search index
+        let post;
+        if (postFile) {
+          const response = await fetch(`/blog/${postFile}`);
+          if (!response.ok) throw new Error('Post not found');
+          const data = await response.json();
+          // If array, find by postId or take first; if object, use directly
+          if (Array.isArray(data)) {
+            post = postId ? data.find(p => p.id === postId) : data[0];
+            if (!post) post = data[0]; // fallback to first if ID not found
+          } else {
+            post = data;
+          }
+        } else {
+          // Load index and find post
+          const indexResponse = await fetch('/blog/index.json');
+          const index = await indexResponse.json();
+          const postMeta = index.posts.find(p => p.id === postId);
+          if (!postMeta) throw new Error('Post not found');
+
+          const postResponse = await fetch(`/blog/${postMeta.file}`);
+          const data = await postResponse.json();
+          if (Array.isArray(data)) {
+            post = data.find(p => p.id === postId) || data[0];
+          } else {
+            post = data;
+          }
+        }
+
+        renderPost(post);
+
+        // Update page title and meta
+        document.title = `${post.summary_title} - Hikayat Daily`;
+        document.querySelector('meta[name="description"]').content = post.overall_summary?.substring(0, 160) || '';
+
+      } catch (error) {
+        container.innerHTML = `<div class="error">Error loading post: ${error.message}. <a href="/">Return to homepage</a></div>`;
+      }
+    }
+
+    function renderPost(post) {
+      const container = document.getElementById('blog-content');
+
+      // Parse key events
+      let keyEvents = [];
+      try {
+        keyEvents = typeof post.key_events === 'string' ? JSON.parse(post.key_events) : post.key_events || [];
+      } catch (e) {
+        keyEvents = [];
+      }
+
+      // Format date
+      const date = new Date(post.summary_date);
+      const formattedDate = date.toLocaleDateString('en-MY', {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      });
+
+      // Country flag
+      const countryFlags = { my: '🇲🇾', sg: '🇸🇬', id: '🇮🇩', th: '🇹🇭', global: '🌐' };
+      const flag = countryFlags[post.country] || '🌐';
+
+      // Language label
+      const langLabels = { ms: 'Bahasa Malaysia', en: 'English', zh: '中文' };
+      const language = langLabels[post.language] || post.language;
+
+      container.innerHTML = `
+        <div class="blog-header">
+          <div class="blog-meta">
+            <span class="blog-tag">${flag} ${post.country?.toUpperCase() || 'Global'}</span>
+            <span class="blog-tag">${language}</span>
+            <span class="blog-tag">${post.article_count || 0} sources</span>
+          </div>
+          <h1 class="blog-title">${post.summary_title}</h1>
+          <p class="blog-subtitle">${formattedDate}</p>
+        </div>
+
+        <div class="blog-section">
+          <h2>
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            Overview
+          </h2>
+          <p>${post.overall_summary || ''}</p>
+        </div>
+
+        ${keyEvents.length > 0 ? `
+        <div class="blog-section">
+          <h2>
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+            Key Events
+          </h2>
+          <div class="key-events">
+            ${keyEvents.map(event => `
+              <div class="event-card ${event.importance || 'medium'}">
+                <span class="event-category">${event.category || 'general'}</span>
+                <div class="event-title">${event.title}</div>
+                <p class="event-desc">${event.description}</p>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+        ` : ''}
+
+        ${post.community_impact ? `
+        <div class="blog-section">
+          <h2>
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            Community Impact
+          </h2>
+          <p>${post.community_impact}</p>
+        </div>
+        ` : ''}
+
+        ${post.preparation_guide ? `
+        <div class="blog-section">
+          <h2>
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
+            What You Can Do
+          </h2>
+          <p>${post.preparation_guide}</p>
+        </div>
+        ` : ''}
+
+        <div class="cta-box">
+          <h3>Get Daily AI Summaries</h3>
+          <p>Download Hikayat Daily for personalized news briefs delivered to your phone every day.</p>
+          <a href="https://play.google.com/store/apps/details?id=com.hikayatdailyglobal&hl=en" target="_blank" rel="noopener" class="store-btn">
+            <svg viewBox="0 0 24 24" fill="currentColor" style="width:24px;height:24px"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 010 1.73l-2.808 1.626L15.206 12l2.492-2.491zM5.864 2.658L16.8 8.99l-2.302 2.302-8.634-8.634z"/></svg>
+            <span class="store-btn-text">
+              <small>Get it on</small>
+              <strong>Google Play</strong>
+            </span>
+          </a>
+        </div>
+
+        <div class="blog-nav">
+          <a href="/">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width:16px;height:16px"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+            Back to Home
+          </a>
+          <a href="/#blog">View All Posts</a>
+        </div>
+      `;
+    }
+
+    // Load the post
+    loadPost();
+  </script>
+</body>
+</html>

@@ -129,6 +129,62 @@
     }
   }
   </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is Hikayat Daily free?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, Hikayat Daily is completely free to download and use. All core features including AI summaries, personalized feeds, and note-taking are available at no cost."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What platforms is Hikayat Daily available on?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Hikayat Daily is currently available on Android via Google Play Store. iOS version is coming soon."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What news sources does Hikayat Daily use?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We aggregate news from 50+ trusted sources across Malaysia, Singapore, Indonesia, and global outlets, covering Business, Tech, Sports, Entertainment, and more."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is my data safe?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. We use industry-standard encryption and never sell your personal information. You can delete your account and all data at any time."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I delete my account?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "You can delete your account directly from the app settings, or visit the account deletion page on our website for instructions."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does Hikayat Daily work offline?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. You can save articles and notes for offline reading. Your saved content will be available even without an internet connection."
+        }
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
   <!-- Navigation -->
@@ -140,8 +196,9 @@
       </a>
       <div class="nav-links">
         <a href="#features">Features</a>
-        <a href="#ai">AI Intelligence</a>
-        <a href="#screenshots">Screenshots</a>
+        <a href="/how-ai-works.html">How AI Works</a>
+        <a href="#blog">Blog</a>
+        <a href="#faq">FAQ</a>
         <a href="#download" class="nav-cta">Download App</a>
       </div>
       <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
@@ -153,8 +210,9 @@
   <!-- Mobile Menu -->
   <div class="mobile-menu" id="mobile-menu">
     <a href="#features" onclick="toggleMobileMenu()">Features</a>
-    <a href="#ai" onclick="toggleMobileMenu()">AI Intelligence</a>
-    <a href="#screenshots" onclick="toggleMobileMenu()">Screenshots</a>
+    <a href="/how-ai-works.html">How AI Works</a>
+    <a href="#blog" onclick="toggleMobileMenu()">Blog</a>
+    <a href="#faq" onclick="toggleMobileMenu()">FAQ</a>
     <a href="#download" onclick="toggleMobileMenu()">Download App</a>
   </div>
 
@@ -319,6 +377,7 @@
               </div>
             </div>
           </div>
+          <a href="/how-ai-works.html" class="ai-learn-more">Learn how our AI works &rarr;</a>
         </div>
       </div>
     </div>
@@ -436,6 +495,58 @@
     </div>
   </section>
 
+  <!-- FAQ Section -->
+  <section class="faq-section" id="faq">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">FAQ</span>
+        <h2 class="section-title">Frequently Asked Questions</h2>
+      </div>
+      <div class="faq-grid">
+        <div class="faq-item">
+          <h3>Is Hikayat Daily free?</h3>
+          <p>Yes, Hikayat Daily is completely free to download and use. All core features including AI summaries, personalized feeds, and note-taking are available at no cost.</p>
+        </div>
+        <div class="faq-item">
+          <h3>What platforms is Hikayat Daily available on?</h3>
+          <p>Hikayat Daily is currently available on Android via Google Play Store. iOS version is coming soon.</p>
+        </div>
+        <div class="faq-item">
+          <h3>What news sources does Hikayat Daily use?</h3>
+          <p>We aggregate news from 50+ trusted sources across Malaysia, Singapore, Indonesia, and global outlets, covering Business, Tech, Sports, Entertainment, and more.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Is my data safe?</h3>
+          <p>Yes. We use industry-standard encryption and never sell your personal information. You can delete your account and all data at any time.</p>
+        </div>
+        <div class="faq-item">
+          <h3>How do I delete my account?</h3>
+          <p>You can delete your account directly from the app settings, or visit our <a href="/delete-account.html">account deletion page</a> for instructions.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Does Hikayat Daily work offline?</h3>
+          <p>Yes. You can save articles and notes for offline reading. Your saved content will be available even without an internet connection.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog Section -->
+  <section class="blog-section" id="blog">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">AI Insights</span>
+        <h2 class="section-title">Daily News Summaries</h2>
+        <p class="section-description">
+          AI-generated news briefs from Hikayat Daily. Stay informed with quick summaries of what matters.
+        </p>
+      </div>
+      <div class="blog-grid" id="blog-grid">
+        <div class="blog-loading">Loading posts...</div>
+      </div>
+    </div>
+  </section>
+
   <!-- CTA Section -->
   <section class="cta-section" id="download">
     <div class="container">
@@ -478,8 +589,8 @@
           <h4>Product</h4>
           <ul>
             <li><a href="#features">Features</a></li>
-            <li><a href="#ai">AI Intelligence</a></li>
-            <li><a href="#screenshots">Screenshots</a></li>
+            <li><a href="/how-ai-works.html">How AI Works</a></li>
+            <li><a href="#blog">Blog</a></li>
             <li><a href="#download">Download</a></li>
           </ul>
         </div>
@@ -538,6 +649,52 @@
         }
       });
     });
+
+    // Load blog posts
+    async function loadBlogPosts() {
+      const grid = document.getElementById('blog-grid');
+      try {
+        const response = await fetch('/blog/index.json');
+        const data = await response.json();
+
+        if (!data.posts || data.posts.length === 0) {
+          grid.innerHTML = '<p class="blog-empty">No posts yet. Check back soon!</p>';
+          return;
+        }
+
+        const countryFlags = { my: '🇲🇾', sg: '🇸🇬', id: '🇮🇩', th: '🇹🇭', global: '🌐' };
+
+        grid.innerHTML = data.posts.slice(0, 6).map(post => {
+          const date = new Date(post.date);
+          const formattedDate = date.toLocaleDateString('en-MY', {
+            year: 'numeric',
+            month: 'short',
+            day: 'numeric'
+          });
+          const flag = countryFlags[post.country] || '🌐';
+          const postUrl = '/blog/post.html#id=' + encodeURIComponent(post.id) + '&file=' + encodeURIComponent(post.file);
+
+          return `
+            <a href="${postUrl}" class="blog-card">
+              <div class="blog-card-header">
+                <span class="blog-card-tag">${flag} ${post.country?.toUpperCase() || 'Global'}</span>
+                <span class="blog-card-date">${formattedDate}</span>
+              </div>
+              <h3 class="blog-card-title">${post.title}</h3>
+              <p class="blog-card-excerpt">${post.excerpt}</p>
+              <div class="blog-card-footer">
+                <span class="blog-card-sources">${post.article_count || 0} sources analyzed</span>
+                <span class="blog-card-link">Read more →</span>
+              </div>
+            </a>
+          `;
+        }).join('');
+      } catch (error) {
+        grid.innerHTML = '<p class="blog-empty">Unable to load posts.</p>';
+      }
+    }
+
+    loadBlogPosts();
   </script>
 </body>
 </html>

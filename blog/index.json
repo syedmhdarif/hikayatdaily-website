@@ -1,0 +1,35 @@
+{
+  "posts": [
+    {
+      "id": "72874094-2221-408d-a125-e452cb2bdcac",
+      "file": "ai-daily-microsoft.json",
+      "title": "Microsoft Hadapi Masalah dengan Kemas Kini Windows, Zac Brown Menang Kes Mahkamah",
+      "date": "2026-01-28",
+      "country": "my",
+      "language": "ms",
+      "excerpt": "Microsoft sedang hadapi masalah besar lepas kemas kini Windows terbaru bawa bug baru, sampai kena patch kecemasan kedua pada bulan Januari. Ini buat p...",
+      "article_count": 25
+    },
+    {
+      "id": "0b8917f0-ddf2-48d5-8773-6cc7f20eaa4c",
+      "file": "ai-daily-summaries.json",
+      "title": "Pelaburan dan kontrak gerakkan pasaran — apa yang rakyat Malaysia rasa hari ini",
+      "date": "2026-01-27",
+      "country": "my",
+      "language": "ms",
+      "excerpt": "Berita hari ini banyak tentang pembiayaan korporat dan kontrak besar daripada kejutan dasar domestik. Item penting — kemenangan kontrak RM6.11 bilion...",
+      "article_count": 40
+    },
+    {
+      "id": "d2cf01cf-8472-439f-9be4-542e3e48f796",
+      "file": "ai-daily-police.json",
+      "title": "Tiga menyamar polis tembak pemain bola sepak — kejadian jenayah menonjol",
+      "date": "2026-01-25",
+      "country": "my",
+      "language": "ms",
+      "excerpt": "Kejadian jenayah yang melibatkan tiga lelaki menyamar sebagai anggota polis yang tembak seorang pemain bola sepak jadi cerita utama minggu ni, dilapor...",
+      "article_count": 28
+    }
+  ],
+  "updated_at": "2026-01-28T07:39:57.578Z"
+}

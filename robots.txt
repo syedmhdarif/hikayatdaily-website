@@ -4,8 +4,13 @@
 User-agent: *
 Allow: /
 
-# Sitemaps
-Sitemap: https://hikayatdaily.com/sitemap.xml
+# Disallow utility pages
+Disallow: /reset-password.html
+Disallow: /open/
+Disallow: /config.js
+Disallow: /env.js
+Disallow: /scripts/
+Disallow: /blog/*.json
 
-# Crawl-delay (optional, be nice to crawlers)
-Crawl-delay: 1
+# Sitemap location
+Sitemap: https://hikayatdaily.com/sitemap.xml
