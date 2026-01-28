@@ -380,6 +380,22 @@
     </div>
   </section>
 
+  <!-- Blog Section - AI Results -->
+  <section class="blog-section" id="blog">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">See It In Action</span>
+        <h2 class="section-title">Real AI-Generated Summaries</h2>
+        <p class="section-description">
+          Here's what our AI produces every day. Actual news briefs generated for Malaysian readers.
+        </p>
+      </div>
+      <div class="blog-grid" id="blog-grid">
+        <div class="blog-loading">Loading posts...</div>
+      </div>
+    </div>
+  </section>
+
   <!-- CTA Section -->
   <section class="cta-section" id="download">
     <div class="container">
@@ -467,6 +483,52 @@
         navbar.classList.remove('scrolled');
       }
     });
+
+    // Load blog posts
+    async function loadBlogPosts() {
+      const grid = document.getElementById('blog-grid');
+      try {
+        const response = await fetch('/blog/index.json');
+        const data = await response.json();
+
+        if (!data.posts || data.posts.length === 0) {
+          grid.innerHTML = '<p class="blog-empty">No posts yet. Check back soon!</p>';
+          return;
+        }
+
+        const countryFlags = { my: '🇲🇾', sg: '🇸🇬', id: '🇮🇩', th: '🇹🇭', global: '🌐' };
+
+        grid.innerHTML = data.posts.slice(0, 6).map(post => {
+          const date = new Date(post.date);
+          const formattedDate = date.toLocaleDateString('en-MY', {
+            year: 'numeric',
+            month: 'short',
+            day: 'numeric'
+          });
+          const flag = countryFlags[post.country] || '🌐';
+          const postUrl = '/blog/post.html#id=' + encodeURIComponent(post.id) + '&file=' + encodeURIComponent(post.file);
+
+          return `
+            <a href="${postUrl}" class="blog-card">
+              <div class="blog-card-header">
+                <span class="blog-card-tag">${flag} ${post.country?.toUpperCase() || 'Global'}</span>
+                <span class="blog-card-date">${formattedDate}</span>
+              </div>
+              <h3 class="blog-card-title">${post.title}</h3>
+              <p class="blog-card-excerpt">${post.excerpt}</p>
+              <div class="blog-card-footer">
+                <span class="blog-card-sources">${post.article_count || 0} sources analyzed</span>
+                <span class="blog-card-link">Read more →</span>
+              </div>
+            </a>
+          `;
+        }).join('');
+      } catch (error) {
+        grid.innerHTML = '<p class="blog-empty">Unable to load posts.</p>';
+      }
+    }
+
+    loadBlogPosts();
   </script>
 </body>
 </html>
